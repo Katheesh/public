@@ -1,12 +1,18 @@
 # Katheesh's Public Files
 BlueTooth Connection New Device
+	
+	```
 	sudo systemctl restart bluetooth
 	cd //bin
 	sudo ./bluetoothctl
 	connect 41:42:F3:73:62:1A
+	```
 	
 composer run plateform not reqs
+
+	```
 	composer install --ignore-platform-reqs
+	```
 	
 Laravel new project command not working run these steps
 	nano ~/.bash_profile 
