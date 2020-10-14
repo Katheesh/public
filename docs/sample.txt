@@ -1,1 +1,189 @@
-Sample file
+package main
+
+import (
+	"fmt"
+	"log"
+	"context"
+	"net/http"
+	"time"
+// go social authenticator
+	"gopkg.in/danilopolani/gocialite.v1"
+	"github.com/gin-gonic/gin"
+// cors
+	"github.com/gin-contrib/cors"
+// Mongodb connection 
+	"go.mongodb.org/mongo-driver/mongo/options"
+    "go.mongodb.org/mongo-driver/mongo"
+// Mongodb connection 
+	//"github.com/katheesh/golang/db"
+)
+
+var gocial = gocialite.NewDispatcher()
+
+type User struct {
+Username string `json:"username"`
+Name string `json:"name"`
+Email string `json:"email"`
+Avatar string `json:"avatar"`
+Provider string `json:"provider"`
+AccessId string `json:"access_id"`
+}
+    	
+func main() {
+	router := gin.Default()
+
+	router.LoadHTMLGlob("templates/*")
+	//router.LoadHTMLFiles("templates/template1.html", "templates/template2.html")
+	router.GET("/", func(c *gin.Context) {
+		c.HTML(http.StatusOK, "index.tmpl", gin.H{
+			"title": "Main website",
+		})
+	})
+
+	router.GET("/auth/:provider", redirectHandler)
+	router.GET("/auth/:provider/callback", callbackHandler)
+
+	router.Use(cors.New(cors.Config{
+		AllowOrigins:     []string{"http://localhost:8080"},
+		AllowMethods:     []string{"PUT", "PATCH", "GET"},
+		AllowHeaders:     []string{"Origin"},
+		ExposeHeaders:    []string{"Content-Length"},
+		AllowCredentials: true,
+		AllowOriginFunc: func(origin string) bool {
+			return origin == "https://github.com"
+		},
+		MaxAge: 12 * time.Hour,
+	}))
+	router.Run("127.0.0.1:4000")
+}
+
+
+// Redirect to correct oAuth URL
+func redirectHandler(c *gin.Context) {
+	// Retrieve provider from route
+	provider := c.Param("provider")
+
+	// In this case we use a map to store our secrets, but you can use dotenv or your framework configuration
+	// for example, in revel you could use revel.Config.StringDefault(provider + "_clientID", "") etc.
+	providerSecrets := map[string]map[string]string{
+		"github": {
+			"clientID":     "e25127e4cdd8b46266cf",
+			"clientSecret": "b9297878ebd61bfe39ff8a2a1b81b2d849927073",
+			"redirectURL":  "http://localhost:4000/auth/github/callback",
+		},
+		"linkedin": {
+			"clientID":     "xxxxxxxxxxxxxx",
+			"clientSecret": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+			"redirectURL":  "http://localhost:8080/auth/linkedin/callback",
+		},
+		"facebook": {
+			"clientID":     "638024323562577",
+			"clientSecret": "435acd719efe02496f7614296f8b20e5",
+			"redirectURL":  "http://localhost:8080/auth/facebook/callback",
+		},
+		"google": {
+			"clientID":     "xxxxxxxxxxxxxx",
+			"clientSecret": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+			"redirectURL":  "http://localhost:8080/auth/google/callback",
+		},
+		"bitbucket": {
+			"clientID":     "xxxxxxxxxxxxxx",
+			"clientSecret": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+			"redirectURL":  "http://localhost:8080/auth/bitbucket/callback",
+		},
+		"amazon": {
+			"clientID":     "xxxxxxxxxxxxxx",
+			"clientSecret": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+			"redirectURL":  "http://localhost:8080/auth/amazon/callback",
+		},
+		"slack": {
+			"clientID":     "xxxxxxxxxxxxxx",
+			"clientSecret": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+			"redirectURL":  "http://localhost:8080/auth/slack/callback",
+		},
+		"asana": {
+			"clientID":     "xxxxxxxxxxxxxx",
+			"clientSecret": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+			"redirectURL":  "http://localhost:8080/auth/asana/callback",
+		},
+	}
+
+	providerScopes := map[string][]string{
+		"github":   []string{"public_repo"},
+		"linkedin": []string{},
+		"facebook": []string{},
+		"google": []string{},
+		"bitbucket": []string{},
+		"amazon": []string{},
+		"slack": []string{},
+		"asana": []string{},
+	}
+
+	providerData := providerSecrets[provider]
+	actualScopes := providerScopes[provider]
+	authURL, err := gocial.New().
+		Driver(provider).
+		Scopes(actualScopes).
+		Redirect(
+			providerData["clientID"],
+			providerData["clientSecret"],
+			providerData["redirectURL"],
+		)
+
+	// Check for errors (usually driver not valid)
+	if err != nil {
+		c.Writer.Write([]byte("Error: " + err.Error()))
+		return
+	}
+
+	// Redirect with authURL
+	c.Redirect(http.StatusFound, authURL)
+}
+
+// Handle callback of provider
+func callbackHandler(c *gin.Context) {
+	// Retrieve query params for state and code
+	state := c.Query("state")
+	code := c.Query("code")
+	provider := c.Param("provider")
+
+	// Handle callback and check for errors
+	user, token, err := gocial.Handle(state, code)
+	if err != nil {
+		c.Writer.Write([]byte("Error: " + err.Error()))
+		return
+	}
+
+	// Print in terminal user information
+	fmt.Printf("%#v", token)
+	fmt.Printf("%#v", user)
+
+	// If no errors, show provider name
+	// c.Writer.Write([]byte(user.FullName + " from provider " + provider))
+	client, err := mongo.NewClient(options.Client().ApplyURI("mongodb+srv://vijay:vijay@cluster0.y5i4x.mongodb.net/test?retryWrites=true&w=majority"))
+    if err != nil {
+        log.Fatal(err)
+    }
+    ctx, _ := context.WithTimeout(context.Background(), 10*time.Second)
+    err = client.Connect(ctx)
+    if err != nil {
+            log.Fatal(err)
+    }else{
+      fmt.Printf("connection successfull.......................\n")
+    }
+    data := &User{
+    	Username: user.Username,
+    	Email: user.Email, 
+    	Name: user.FullName,
+    	Avatar: user.Avatar,
+    	Provider: provider,
+    	AccessId: user.ID,
+    }
+	collection := client.Database("test").Collection("user")
+		insertResult, err := collection.InsertOne(context.TODO(), data)
+		if err != nil {
+		log.Fatal(err)
+		}
+fmt.Println("Inserted post with ID:", insertResult.InsertedID)
+	//c.JSON(200, gin.H{"data": user,})
+}
