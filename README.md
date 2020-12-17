@@ -1,4 +1,10 @@
 # Katheesh's Public Files
+
+electron persmission
+	sudo chown root:root chrome-sandbox
+	sudo chmod 4755 chrome-sandbox
+
+
 BlueTooth Connection New Device
 	
 	sudo systemctl restart bluetooth
