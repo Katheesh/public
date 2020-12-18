@@ -5,14 +5,17 @@ electron persmission
 sudo chown root:root chrome-sandbox
 sudo chmod 4755 chrome-sandbox
  ```
-
-
 BlueTooth Connection New Device
 	
 	sudo systemctl restart bluetooth
 	cd //bin
 	sudo ./bluetoothctl
 	connect 41:42:F3:73:62:1A
+	
+Setup Tamil Unicode in linux distribution
+```
+sudo apt-get install fonts-lohit-taml fonts-lohit-taml-classical fonts-samyak-taml
+```
 	
 composer run plateform not reqs
 	
