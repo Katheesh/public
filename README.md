@@ -37,10 +37,13 @@ Run deb package
 
 	sudo dpkg -i filename.deb
 
-Flutter App create 
+You can set the date and time in two ways. First is to set them on your PC by using the following code:
 
-	export PATH=`pwd`/flutter/bin:$PATH
-	echo $PATH
+	rtc.adjust(DateTime(F(__DATE__), F(__TIME__))); 
+	
+and the second way is to set date and time manually using the following code:
+
+	rtc.adjust(DateTime(YEAR, MONTH, DAY, HOUR , MINUTE, SECOND));
 
 Provide Port Permission
 
