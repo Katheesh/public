@@ -17,6 +17,9 @@ Setup Tamil Unicode in linux distribution
 sudo apt-get install fonts-lohit-taml fonts-lohit-taml-classical fonts-samyak-taml
 ```
 	
+Linux Minimal version
+https://help.ubuntu.com/community/Installation/MinimalCD#A64-bit_PowerPC.2A.2A
+
 composer run plateform not reqs
 	
 	composer install --ignore-platform-reqs
