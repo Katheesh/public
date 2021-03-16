@@ -1,5 +1,7 @@
 # Katheesh's Public Files
 
+https://www.howtoforge.com/dockerizing-laravel-with-nginx-mysql-and-docker-compose/
+
 electron persmission
  ```
 sudo chown root:root chrome-sandbox
