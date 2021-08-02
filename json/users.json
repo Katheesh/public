@@ -1,0 +1,268 @@
+[
+    {
+        "type": "header",
+        "version": "5.1.1",
+        "comment": "Export to JSON plugin for PHPMyAdmin"
+    },
+    {
+        "type": "database",
+        "name": "php_pagination"
+    },
+    {
+        "type": "table",
+        "name": "users",
+        "database": "php_pagination",
+        "data": [
+            {
+                "user_id": "1",
+                "name": "Pauline S. Rich",
+                "phone": "412-735-0224"
+            },
+            {
+                "user_id": "2",
+                "name": "Sarah C. White",
+                "phone": "320-552-9961"
+            },
+            {
+                "user_id": "3",
+                "name": "Samuel L. Leslie",
+                "phone": "201-324-8264"
+            },
+            {
+                "user_id": "4",
+                "name": "Norma R. Manly",
+                "phone": "478-322-4715"
+            },
+            {
+                "user_id": "5",
+                "name": "Kimberly R. Castro",
+                "phone": "479-966-6788"
+            },
+            {
+                "user_id": "6",
+                "name": "Elaine R. Davis",
+                "phone": "701-685-8912"
+            },
+            {
+                "user_id": "7",
+                "name": "Concepcion S. Gardner",
+                "phone": "607-829-8758"
+            },
+            {
+                "user_id": "8",
+                "name": "Patricia J. White",
+                "phone": "803-789-0429"
+            },
+            {
+                "user_id": "9",
+                "name": "Michael M. Bothwell",
+                "phone": "214-585-0737"
+            },
+            {
+                "user_id": "10",
+                "name": "Ronald C. Vansickle",
+                "phone": "630-571-4107"
+            },
+            {
+                "user_id": "11",
+                "name": "Clarence A. Rich",
+                "phone": "904-459-3747"
+            },
+            {
+                "user_id": "12",
+                "name": "Elizabeth W. Peterson",
+                "phone": "404-380-9481"
+            },
+            {
+                "user_id": "13",
+                "name": "Renee R. Hewitt",
+                "phone": "323-350-4973"
+            },
+            {
+                "user_id": "14",
+                "name": "John K. Love",
+                "phone": "337-229-1983"
+            },
+            {
+                "user_id": "15",
+                "name": "Teresa J. Rincon",
+                "phone": "216-394-6894"
+            },
+            {
+                "user_id": "16",
+                "name": "Erin S. Huckaby",
+                "phone": "503-284-8652"
+            },
+            {
+                "user_id": "17",
+                "name": "Brian A. Handley",
+                "phone": "989-304-7122"
+            },
+            {
+                "user_id": "18",
+                "name": "Michelle A. Polk",
+                "phone": "540-232-0351"
+            },
+            {
+                "user_id": "19",
+                "name": "Wanda M. Brown",
+                "phone": "718-262-7466"
+            },
+            {
+                "user_id": "20",
+                "name": "Phillip A. Hatcher",
+                "phone": "407-492-5727"
+            },
+            {
+                "user_id": "21",
+                "name": "Dennis J. Terrell",
+                "phone": "903-863-5810"
+            },
+            {
+                "user_id": "22",
+                "name": "Britney F. Johnson",
+                "phone": "972-421-6933"
+            },
+            {
+                "user_id": "23",
+                "name": "Rachelle J. Martin",
+                "phone": "920-397-4224"
+            },
+            {
+                "user_id": "24",
+                "name": "Leila E. Ledoux",
+                "phone": "615-425-9930"
+            },
+            {
+                "user_id": "25",
+                "name": "Darrell A. Fields",
+                "phone": "708-887-1913"
+            },
+            {
+                "user_id": "26",
+                "name": "Linda D. Carter",
+                "phone": "909-386-7998"
+            },
+            {
+                "user_id": "27",
+                "name": "Melva J. Palmisano",
+                "phone": "630-643-8763"
+            },
+            {
+                "user_id": "28",
+                "name": "Jessica V. Windham",
+                "phone": "513-807-9224"
+            },
+            {
+                "user_id": "29",
+                "name": "Karen T. Martin",
+                "phone": "847-385-1621"
+            },
+            {
+                "user_id": "30",
+                "name": "Jack K. McDonough",
+                "phone": "561-641-4509"
+            },
+            {
+                "user_id": "31",
+                "name": "John M. Williams",
+                "phone": "508-269-9346"
+            },
+            {
+                "user_id": "32",
+                "name": "Amelia W. Davis",
+                "phone": "347-537-8052"
+            },
+            {
+                "user_id": "33",
+                "name": "Gertrude W. Lawrence",
+                "phone": "510-702-7415"
+            },
+            {
+                "user_id": "34",
+                "name": "Michael L. Harris",
+                "phone": "252-219-4076"
+            },
+            {
+                "user_id": "35",
+                "name": "Casey A. Groves",
+                "phone": "810-334-9674"
+            },
+            {
+                "user_id": "36",
+                "name": "James H. Wilson",
+                "phone": "865-259-6772"
+            },
+            {
+                "user_id": "37",
+                "name": "James A. Wesley",
+                "phone": "443-217-1859"
+            },
+            {
+                "user_id": "38",
+                "name": "Armando C. Gay",
+                "phone": "716-252-9230"
+            },
+            {
+                "user_id": "39",
+                "name": "James M. Duarte",
+                "phone": "402-840-0541"
+            },
+            {
+                "user_id": "40",
+                "name": "Jason E. West",
+                "phone": "360-610-7730"
+            },
+            {
+                "user_id": "41",
+                "name": "Gloria H. Saucedo",
+                "phone": "205-861-3306"
+            },
+            {
+                "user_id": "42",
+                "name": "Paul T. Moody",
+                "phone": "914-683-4994"
+            },
+            {
+                "user_id": "43",
+                "name": "Sandra L. Williams",
+                "phone": "310-335-1336"
+            },
+            {
+                "user_id": "44",
+                "name": "Elaine T. Deville",
+                "phone": "626-513-8306"
+            },
+            {
+                "user_id": "45",
+                "name": "Robyn L. Spangler",
+                "phone": "754-224-7023"
+            },
+            {
+                "user_id": "46",
+                "name": "Sam A. Pino",
+                "phone": "806-823-5344"
+            },
+            {
+                "user_id": "47",
+                "name": "Joseph H. Marble",
+                "phone": "201-917-2804"
+            },
+            {
+                "user_id": "48",
+                "name": "Mark M. Bassett",
+                "phone": "206-592-4665"
+            },
+            {
+                "user_id": "49",
+                "name": "Edgar M. Billy",
+                "phone": "978-365-0324"
+            },
+            {
+                "user_id": "50",
+                "name": "Connie M. Yang",
+                "phone": "815-288-5435"
+            }
+        ]
+    }
+]
